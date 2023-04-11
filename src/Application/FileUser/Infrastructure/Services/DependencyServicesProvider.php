@@ -15,7 +15,10 @@ class DependencyServicesProvider extends ServicesProvider
                     "useCase"=> [
                         \Src\Application\FileUser\Application\Get\FileUserShowUseCase::class,
                         \Src\Application\FileUser\Application\Store\FileUserStoreUseCase::class,
-                        \Src\Application\FileUser\Application\Store\FileUserSavingUseCase::class
+                        \Src\Application\FileUser\Application\Store\FileUserSavingUseCase::class,
+                        \Src\Application\FileUser\Application\Get\FileUserIndexUserIdUseCase::class,
+                        \Src\Application\FileUser\Application\Get\FileUserShowUserIdUseCase::class,
+                        \Src\Application\FileUser\Application\Delete\FileUserDeleteUseCase::class
                     ],
                     "contract"=>\Src\Application\FileUser\Domain\Contracts\FileUserRepositoryContract::class,
                     "repository" =>\Src\Application\FileUser\Infrastructure\Repositories\Eloquent\FileUserRepository::class
