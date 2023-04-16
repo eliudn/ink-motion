@@ -212,6 +212,9 @@ return [
         //FILE USER//
         \Src\Application\FileUser\Infrastructure\Services\RouteServicesProvider::class,
         \Src\Application\FileUser\Infrastructure\Services\DependencyServicesProvider::class,
+        //GALLERY FILE//
+        \Src\Application\GalleryFileUser\Infrastructure\Services\RouteServicesProvider::class,
+        \Src\Application\GalleryFileUser\Infrastructure\Services\DependencyServicesProvider::class
 
     ],
 

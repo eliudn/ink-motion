@@ -46,6 +46,17 @@ class GalleryRepository implements GalleryRepositoryContract
         return new GalleryEntity($gallery->toArray());
     }
 
+    public function showGalleryId(GalleryIdValueObject $galleryIdValueObject): GalleryEntity
+    {
+        $gallery = $this->model->find($galleryIdValueObject->value());
+
+        if($gallery->isEmpty() ){
+            return new GalleryEntity(null, "GALLERY_NOT_FOUND");
+        }
+
+        return new GalleryEntity($gallery->toArray());
+    }
+
     /**
      * @param GalleryStoreValueObject $galleryStoreValueObject
      * @param UserIdValueObject $userIdValueObject

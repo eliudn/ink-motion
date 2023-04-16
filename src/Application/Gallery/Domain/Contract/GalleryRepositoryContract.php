@@ -23,6 +23,12 @@ interface GalleryRepositoryContract
     public function show(UserIdValueObject $userIdValueObject):GalleryEntity;
 
     /**
+     * @param GalleryIdValueObject $galleryIdValueObject
+     * @return GalleryEntity
+     */
+    public function showGalleryId(GalleryIdValueObject $galleryIdValueObject):GalleryEntity;
+
+    /**
      * @param GalleryStoreValueObject $galleryStoreValueObject
      * @param UserIdValueObject $userIdValueObject
      * @return GalleryEntity
