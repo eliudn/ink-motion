@@ -16,8 +16,12 @@ class Gallery extends Model
         'user_id'
     ];
 
-    public function GalleryFile(): BelongsToMany
+
+
+    public function galleryFile()
     {
-        return $this->belongsToMany(GalleryFileUser::class, 'gallery_file_user');
+        return $this->hasMany(GalleryFileUser::class,
+            'gallery_id'
+            );
     }
 }

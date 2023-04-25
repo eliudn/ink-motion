@@ -214,7 +214,11 @@ return [
         \Src\Application\FileUser\Infrastructure\Services\DependencyServicesProvider::class,
         //GALLERY FILE//
         \Src\Application\GalleryFileUser\Infrastructure\Services\RouteServicesProvider::class,
-        \Src\Application\GalleryFileUser\Infrastructure\Services\DependencyServicesProvider::class
+        \Src\Application\GalleryFileUser\Infrastructure\Services\DependencyServicesProvider::class,
+        // REPOSITORY //
+        \Src\Application\MediaRepositories\Infrastructure\Services\RouteServiceProvider::class,
+        \Src\Application\MediaRepositories\Infrastructure\Services\DependencyServicesProvider::class
+
 
     ],
 

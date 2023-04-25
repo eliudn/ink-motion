@@ -23,7 +23,7 @@ class GalleryIndexController extends CustomController
         return $this->jsonResponse(
             $this->ok(),
             false,
-                  $this->galleryIndexUseCase->__invoke()->entity()
+            $this->galleryIndexUseCase->__invoke()->entity()
         );
     }
 }

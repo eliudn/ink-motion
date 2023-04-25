@@ -6,7 +6,7 @@ namespace Src\Application\FileUser\Application\Store;
 use Src\Management\FileHandling\Application\Get\FileShowUseCase;
 use Src\Management\FileHandling\Application\Store\FileStoreUseCase;
 
-class FileUserSavingUseCase
+final class FileUserSavingUseCase
 {
     public function __construct(
         private readonly FileUserStoreUseCase $fileUserStoreUseCase,
@@ -16,13 +16,13 @@ class FileUserSavingUseCase
     {
     }
 
-    public function __invoke(array $request, string $userId): array
+    public function __invoke(array $request, string $userId, ?string $path): array
     {
         $response =[];
 
         foreach ($request as $index => $value){
 
-            $file = $this->fileStoreUseCase->__invoke($this->toArray($value,$userId));
+            $file = $this->fileStoreUseCase->__invoke($this->toArray($value,$userId,$path));
             $fileUserStore = $this->fileUserStoreUseCase->__invoke($file->entity())->entity();
             $response[$index]= array_merge(
                $fileUserStore,
@@ -34,12 +34,13 @@ class FileUserSavingUseCase
         return $response;
     }
 
-    private function toArray(mixed $request, string $userId):array
+    private function toArray(mixed $request, string $userId, ?string $path):array
     {
+        $valor = $path ?  '/'.$path: '';
         return [
             "file"=>$request,
             "userId"=>$userId,
-            "path"=>"Users/".$userId
+            "path"=>"Users/".$userId.$valor
 
         ];
     }

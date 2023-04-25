@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('plot_sections', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->integer('order');
-            $table->char('media_repository_id',36);
+            $table->float('order',2);
+            $table->char('media_repository_season_id',36);
+            $table->integer('season')->default(0);
 
-            $table->foreign('media_repository_id')->references('id')->on('media_repositories');
+            $table->unique(['id','season','order']);
+            $table->foreign('media_repository_season_id')->references('id')->on('media_repository_seasons');
             $table->timestamps();
         });
     }

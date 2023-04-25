@@ -8,7 +8,7 @@ use Src\Shared\Infrastructure\Controllers\CustomController;
 use Src\Shared\Infrastructure\Helper\HttpCodeHelper;
 use Src\Shared\Infrastructure\Middleware\UserMiddleware;
 
-class GalleryStoreController extends CustomController
+final class GalleryStoreController extends CustomController
 {
 
     use HttpCodeHelper;

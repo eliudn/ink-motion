@@ -44,8 +44,6 @@ class GalleryFileRepository implements \Src\Application\GalleryFileUser\Domain\C
             "updated_at"=> $item->updated_at,
             "created_at"=> $item->created_at,
         ]);
-
-
     }
 
     public function index(UserIdValueObject $userIdValueObject): GalleryFileEntity

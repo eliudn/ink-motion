@@ -28,7 +28,7 @@ class GalleryRepository implements GalleryRepositoryContract
         if($gallery->isEmpty() ){
             return new GalleryEntity(null, "GALLERY_NOT_FOUND");
         }
-        return new GalleryEntity($gallery->toArray());
+        return new GalleryEntity($this->responseData($gallery)->toArray());
     }
 
     /**
@@ -37,13 +37,15 @@ class GalleryRepository implements GalleryRepositoryContract
      */
     public function show(UserIdValueObject $userIdValueObject): GalleryEntity
     {
-        $gallery = $this->model->where('user_id', $userIdValueObject->value())->get();
+        $gallery = $this->model->where('user_id', $userIdValueObject->value())
+           // ->with('galleryFile.file')
+            ->get();
 
         if($gallery->isEmpty() ){
             return new GalleryEntity(null, "GALLERY_NOT_FOUND");
         }
-
-        return new GalleryEntity($gallery->toArray());
+       // dd($gallery->toArray());
+        return new GalleryEntity($this->responseData($gallery)->toArray());
     }
 
     public function showGalleryId(GalleryIdValueObject $galleryIdValueObject): GalleryEntity
@@ -97,12 +99,13 @@ class GalleryRepository implements GalleryRepositoryContract
             'name'=>$galleryUpdateValueObject->value()["name"],
             'description'=>$galleryUpdateValueObject->value()["description"]
         ]);
-        return new GalleryEntity($gallery->toArray());
+        return new GalleryEntity($this->responseData($gallery)->toArray());
 
     }
 
     /**
      * @param GalleryIdValueObject $galleryIdValueObject
+     * @param UserIdValueObject $userIdValueObject
      * @return GalleryEntity
      */
     public function destroy(GalleryIdValueObject $galleryIdValueObject, UserIdValueObject $userIdValueObject): GalleryEntity
@@ -116,5 +119,23 @@ class GalleryRepository implements GalleryRepositoryContract
         }
         return new GalleryEntity($gallery->id);
 
+    }
+
+    private function responseData( $data): \Illuminate\Support\Collection
+    {
+
+        $collect = collect($data);
+        return $collect->map(fn($value,$key )=>[
+            "id"            => $value->id,
+            "name"          => $value->name,
+            "description"   => $value->description,
+            "user_id"       => $value->user_id,
+            "created_at"    => $value->created_at,
+            "updated_at"    => $value->updated_at,
+            "files"         => $value->galleryFile
+                                     ->map(fn($value)
+                            => $value->file
+            )
+        ]);
     }
 }
