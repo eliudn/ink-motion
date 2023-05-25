@@ -15,6 +15,7 @@ final class MediaRepositoryEntity extends Domain
 
     public function __construct(mixed $entity = null, ?string $exception = null)
     {
+
         parent::__construct($entity, $exception);
     }
 
@@ -41,8 +42,9 @@ final class MediaRepositoryEntity extends Domain
     {
         if (!is_null($exception)) {
             match ($exception) {
+
                 self::REPOSITORY_NOT_FOUND => throw new RepositoryNotFoundException("Repository not found", $this->notFound()),
-                self::REPOSITORY_FINALIZED_OR_CANCELLED => throw  new RepositoryFinalizedOrCancelledException("Repository finalized or cancelled", $this->noContent())
+                self::REPOSITORY_FINALIZED_OR_CANCELLED => throw  new RepositoryFinalizedOrCancelledException("Repository finalized or cancelled", $this->badRequest())
             };
         }
     }

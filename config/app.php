@@ -217,8 +217,13 @@ return [
         \Src\Application\GalleryFileUser\Infrastructure\Services\DependencyServicesProvider::class,
         // REPOSITORY //
         \Src\Application\MediaRepositories\Infrastructure\Services\RouteServiceProvider::class,
-        \Src\Application\MediaRepositories\Infrastructure\Services\DependencyServicesProvider::class
-
+        \Src\Application\MediaRepositories\Infrastructure\Services\DependencyServicesProvider::class,
+        // SEASON //
+       \Src\Application\MediaRepositorySeasons\Infrastructure\Services\RouteServiceProvider::class,
+        \Src\Application\MediaRepositorySeasons\Infrastructure\Services\DependencyServicesProvider::class,
+        // Capitulos
+        \Src\Application\PlotSection\Infrastructure\Services\RouteServicesProvider::class,
+        \Src\Application\PlotSection\Infrastructure\Services\DependencyServicesProvider::class,
 
     ],
 

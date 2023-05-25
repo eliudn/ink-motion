@@ -15,8 +15,10 @@ final class MediaRepositoryValidation implements MediaRepositoryValidationContra
      */
     public function checkStatus(RepositoryStatusValueObject $repositoryStatusValueObject): MediaRepositoryEntity
     {
-        if($repositoryStatusValueObject->value() === Status::FINALIZED->value or $repositoryStatusValueObject->value() === Status::CANCELLED->value)
+
+        if($repositoryStatusValueObject->value() == Status::FINALIZED->value or $repositoryStatusValueObject->value() == Status::CANCELLED->value)
         {
+
             return  new MediaRepositoryEntity(null, 'REPOSITORY_FINALIZED_OR_CANCELLED');
         }
        return new MediaRepositoryEntity(null,null);

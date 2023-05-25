@@ -47,7 +47,7 @@ class LoginAuthenticationParametersValueObject extends MixedValueObject
             $aud = $_SERVER['HTTP_X_FORWARDER_FOR'];
         }
 
-        if($_SERVER['REMOTE_ADDR'])
+        if(!empty($_SERVER['REMOTE_ADDR']))
         {
             $aud = $_SERVER['REMOTE_ADDR'];
         }

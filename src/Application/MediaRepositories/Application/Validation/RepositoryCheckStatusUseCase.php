@@ -2,20 +2,21 @@
 
 namespace Src\Application\MediaRepositories\Application\Validation;
 
-use http\Client\Curl\User;
+
+use Src\Application\MediaRepositories\Application\Get\RepositoryShowUseCase;
 use Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryRepositoryContract;
 use Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryValidationContract;
 use Src\Application\MediaRepositories\Domain\ValueObjects\RepositoryIdValueObject;
 use Src\Application\MediaRepositories\Domain\ValueObjects\RepositoryStatusValueObject;
-use Src\Application\MediaRepositories\Infrastructure\Repositories\Eloquent\MediaRepositoryValidation;
+
 use Src\Application\User\Domain\ValueObjects\UserIdValueObject;
 
 final class RepositoryCheckStatusUseCase
 {
 
     public function __construct(
-        private readonly MediaRepositoryRepositoryContract $mediaRepositoryRepositoryContract,
-        private readonly MediaRepositoryValidationContract $mediaRepositoryValidationContract
+        private readonly MediaRepositoryValidationContract $mediaRepositoryValidationContract,
+        private readonly RepositoryShowUseCase $repositoryShowUseCase
     )
     {
     }
@@ -28,10 +29,9 @@ final class RepositoryCheckStatusUseCase
 
     private function status(string $userId,string $repositoryId):string
     {
-        return $this->mediaRepositoryRepositoryContract->show(
-            new UserIdValueObject($userId),
-            new RepositoryIdValueObject($repositoryId)
-        )->entity()["status"];
+        return $this->repositoryShowUseCase->__invoke(
+          $userId,$repositoryId
+        )->entity()["status"]->value;
     }
 
 }

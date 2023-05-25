@@ -2,13 +2,16 @@
 
 namespace Src\Application\User\Infrastructure\Repositories\Eloquent;
 
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Src\Application\Role\Infrastructure\Repositories\Eloquent\Role;
 
 class User extends Model
 {
+    use HasFactory;
     use HasUuids;
 
     protected $table ='users';
@@ -24,6 +27,14 @@ class User extends Model
         'password',
         'int_id'
     ];
+
+    /**
+     * @return UserFactory
+     */
+    protected static function newFactory(): UserFactory
+    {
+        return  UserFactory::new();
+    }
 
     /**
      * @return BelongsToMany

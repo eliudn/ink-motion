@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->float('order',2);
             $table->char('media_repository_season_id',36);
-            $table->integer('season')->default(0);
+            //$table->integer('season')->default(0);
 
-            $table->unique(['id','season','order']);
+            $table->unique(['id','media_repository_season_id','order']);
             $table->foreign('media_repository_season_id')->references('id')->on('media_repository_seasons');
             $table->timestamps();
         });

@@ -10,9 +10,9 @@ class RouteServicesProvider extends ServicesProvider
    {
        $appVersion = env('APP_VERSION');
         $this->setDependency(
-           'api/'.$appVersion.'/user/{userId}/repository/{repositoryId}/plotSection',
+           'api/'.$appVersion.'/repository/{repositoryId}',
            'Src\Application\PlotSection\Infrastructure\Controllers',
-           'src/Application/PlotSection/Infrastructure/Routes/Api.php',
+           'Src/Application/PlotSection/Infrastructure/Routes/Api.php',
            false
                   );
        parent::__construct($app);

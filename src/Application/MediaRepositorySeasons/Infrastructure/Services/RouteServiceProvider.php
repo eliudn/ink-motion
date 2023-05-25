@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Application\MediaRepositories\Infrastructure\Services;
+namespace Src\Application\MediaRepositorySeasons\Infrastructure\Services;
 
 use Src\Shared\Infrastructure\Services\RouteServiceProvider as ServiceProvider;
 
-class RouteServiceProvider extends ServiceProvider
+ class RouteServiceProvider extends ServiceProvider
 {
 
     public function __construct($app)

@@ -25,9 +25,10 @@ class DependencyServicesProvider extends ServiceProvider
                 "useCase"=>[
                     \Src\Application\MediaRepositories\Application\Validation\RepositoryCheckStatusUseCase::class
                 ],
-                "contract"=>\Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryValidationContract::class ,
+                "contract"=>\Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryValidationContract::class,
                 "repository"=>\Src\Application\MediaRepositories\Infrastructure\Repositories\Eloquent\MediaRepositoryValidation::class
             ]
+
         ]);
         parent::__construct($app);
     }

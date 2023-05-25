@@ -1,23 +1,30 @@
 <?php
 
-namespace Src\Application\MediaRepositories\Infrastructure\Services;
+namespace Src\Application\MediaRepositorySeasons\Infrastructure\Services;
 
 use Src\Shared\Infrastructure\Services\DependencyServiceProvider as ServiceProvider;
-class DependencyServicesProvider extends ServiceProvider
+final  class DependencyServicesProvider extends ServiceProvider
 {
     public function __construct($app)
     {
         $this->setDependency([
             [
                 "useCase"=>[
-                    \Src\Application\MediaRepositories\Application\Store\RepositoryStoreUseCase::class,
-                    \Src\Application\MediaRepositories\Application\Get\RepositoryIndexUserIdUseCase::class,
-                    \Src\Application\MediaRepositories\Application\Get\RepositoryShowUseCase::class,
-                    \Src\Application\MediaRepositories\Application\Update\RepositoryUpdateUseCase::class,
-                    \Src\Application\MediaRepositories\Application\Delete\RepositoryDeleteUseCase::class
+                    \Src\Application\MediaRepositorySeasons\Application\Store\SeasonStoreUseCase::class,
+                    \Src\Application\MediaRepositorySeasons\Application\Get\SeasonShowUseCase::class,
+                    \Src\Application\MediaRepositorySeasons\Application\Update\SeasonUpdateStatusUseCase::class,
+                    \Src\Application\MediaRepositorySeasons\Application\Get\SeasonShowByOrderByRepositoryIdUseCase::class
+
                 ],
-                "contract"=>\Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryRepositoryContract::class,
-                "repository"=>\Src\Application\MediaRepositories\Infrastructure\Repositories\Eloquent\MediaRepositoryRepository::class
+                "contract"=>\Src\Application\MediaRepositorySeasons\Domain\Contracts\SeasonRepositoryContract::class,
+                "repository"=>\Src\Application\MediaRepositorySeasons\Infrastructure\Repositories\Eloquent\RepositorySeason::class
+            ],
+            [
+                "useCase"=>[
+                    \Src\Application\MediaRepositorySeasons\Application\Validation\SeasonVerifyLastRecordFinalizationUseCase::class
+                ],
+                "contract"=>\Src\Application\MediaRepositorySeasons\Domain\Contracts\SeasonValidationContract::class,
+                "repository"=>\Src\Application\MediaRepositorySeasons\Infrastructure\Repositories\Eloquent\SeasonValidation::class
             ]
         ]);
         parent::__construct($app);

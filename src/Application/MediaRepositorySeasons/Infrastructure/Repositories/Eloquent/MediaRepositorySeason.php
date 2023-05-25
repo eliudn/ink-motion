@@ -20,4 +20,6 @@ class MediaRepositorySeason extends Model
     protected $casts=[
         'status'=>Status::class
     ];
+
+
 }

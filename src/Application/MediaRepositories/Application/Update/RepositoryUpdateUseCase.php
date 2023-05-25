@@ -2,6 +2,7 @@
 
 namespace Src\Application\MediaRepositories\Application\Update;
 
+use Src\Application\MediaRepositories\Application\Validation\RepositoryCheckStatusUseCase;
 use Src\Application\MediaRepositories\Domain\Contracts\MediaRepositoryRepositoryContract;
 use Src\Application\MediaRepositories\Domain\MediaRepositoryEntity;
 use Src\Application\MediaRepositories\Domain\ValueObjects\RepositoryIdValueObject;
